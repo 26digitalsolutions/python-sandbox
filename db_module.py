@@ -6,6 +6,9 @@ class DbClass():
     Connect, Select from, Insert into, Update and Delete from the mysql database
     '''
 
+    def __init__(self):
+        pass
+
     ''' connect '''
     def connect_db(self):
         try:
@@ -26,6 +29,7 @@ class DbClass():
             mycursor = mydb.cursor(dictionary=True)
             mycursor.execute(query)
         except Exception as e:
+            print(f"Query not processed: {query}")
             print(e)
         else:
             if query_type == "select":
@@ -36,4 +40,7 @@ class DbClass():
 
     ''' close the db '''
     def close_db(self,mydb):
-        mydb.close()
+        try:
+            mydb.close()
+        except Exception as e:
+            print(e)
