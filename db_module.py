@@ -3,7 +3,7 @@ import mysql.connector
 class DbClass():
 
     '''
-    Connect, Select from, Insert into, Update and Delete from the mysql database
+    Connect and close db mysql
     '''
 
     def __init__(self):
@@ -23,23 +23,8 @@ class DbClass():
         else:
             return mydb
 
-    ''' query the db (select, update, insert, delete) '''
-    def query_db(self,mydb,query_type,query):
-        try:
-            mycursor = mydb.cursor(dictionary=True)
-            mycursor.execute(query)
-        except Exception as e:
-            print(f"Query not processed: {query}")
-            print(e)
-        else:
-            if query_type == "select":
-                myresults = mycursor.fetchall()
-                return myresults
-            elif query_type == "update" or query_type == "delete" or query_type == "insert":
-                return f"Rows affected: {mycursor.rowcount}"
-
     ''' close the db '''
-    def close_db(self,mydb):
+    def close_db(self, mydb):
         try:
             mydb.close()
         except Exception as e:
