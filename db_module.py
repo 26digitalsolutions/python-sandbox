@@ -3,7 +3,7 @@ import mysql.connector
 class DbClass():
 
     '''
-    Connect and close db mysql
+    Connect to / close db mysql
     '''
 
     def __init__(self):
